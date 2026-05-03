@@ -6,7 +6,10 @@ import axios from "axios";
 // const API = "http://192.168.1.42:5000/expenses";  
 
 // const API = "http://localhost:5000/expenses";
-const API = "/expenses";
+// const API = "/expenses";
+
+// render pe deploy hone ke ----
+const API = "https://expense-tracker-9t9n.onrender.com/expenses";
 
 function App() {
   // Expenses ki empty list se shuru karo
