@@ -18,19 +18,39 @@ function App() {
   const [amount, setAmount] = useState("");
 
   // Page load hone pe backend se saare expenses lao
+
   // useEffect(() => {
   //   axios.get(API).then((res) => setExpenses(res.data));
   // }, []);
-  useEffect(() => {
-  axios
-    .get(API)
-    .then((res) => {
-      console.log("DATA:", res.data); // yaha console me data dikhega
-      setExpenses(Array.isArray(res.data) ? res.data : []);
+ useEffect(() => {
+
+  // Backend se saare old expenses laao
+  axios.get(API)
+
+    // Agar data successfully mil gaya
+    .then((response) => {
+
+      console.log("Backend Data:", response.data);
+
+      // Check karo data array hai ya nahi
+      if (Array.isArray(response.data)) {
+
+        // Expenses state me data save karo
+        setExpenses(response.data);
+
+      } else {
+
+        // Agar data galat format me aaye
+        setExpenses([]);
+      }
     })
-    .catch((err) => {
-      console.log("FETCH ERROR:", err);
+
+    // Agar API call me error aaye
+    .catch((error) => {
+
+      console.log("Data fetch karne me error:", error);
     });
+
 }, []);
 
   // Backend me naya expense save karo
