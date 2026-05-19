@@ -18,9 +18,20 @@ function App() {
   const [amount, setAmount] = useState("");
 
   // Page load hone pe backend se saare expenses lao
+  // useEffect(() => {
+  //   axios.get(API).then((res) => setExpenses(res.data));
+  // }, []);
   useEffect(() => {
-    axios.get(API).then((res) => setExpenses(res.data));
-  }, []);
+  axios
+    .get(API)
+    .then((res) => {
+      console.log("DATA:", res.data); // yaha console me data dikhega
+      setExpenses(Array.isArray(res.data) ? res.data : []);
+    })
+    .catch((err) => {
+      console.log("FETCH ERROR:", err);
+    });
+}, []);
 
   // Backend me naya expense save karo
   const addExpense = async () => {
