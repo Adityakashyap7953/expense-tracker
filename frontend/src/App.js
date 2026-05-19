@@ -36,7 +36,7 @@ function App() {
       if (Array.isArray(response.data)) {
 
         // Expenses state me data save karo
-        setExpenses(response.data);
+        setExpenses(response.data.reverse());
 
       } else {
 
@@ -68,7 +68,12 @@ function App() {
       }),
     };
     const res = await axios.post(API, newExpense);
-    setExpenses([...expenses, res.data]);
+// -------------- Show the latest expense at the bottom 
+    // setExpenses([...expenses, res.data]);
+
+
+// -------------- Show the latest expense at the top
+    setExpenses([res.data, ...expenses]);
     setTitle("");
     setAmount("");
   };
