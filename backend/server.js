@@ -15,26 +15,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 // Routes
-
 app.use("/api/auth", authRoutes);
 
 app.use("/expenses", expenseRoutes);
 
 app.use("/categories", authMiddleware, categoryRoutes);
 
-
 // MongoDB Connect
-
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected!"))
   .catch((err) => console.log("MongoDB Error:", err));
 
-
 // Middleware Test
-
 app.get("/api/test", authMiddleware, (req, res) => {
   res.json({
     message: "Middleware working!",
@@ -42,9 +36,7 @@ app.get("/api/test", authMiddleware, (req, res) => {
   });
 });
 
-
 // Server
-
 app.listen(5000, () => {
   console.log("Server start ho gaya port 5000 pe!");
 });

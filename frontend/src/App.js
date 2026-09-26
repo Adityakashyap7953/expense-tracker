@@ -4,20 +4,15 @@ import Login from "./Login";
 import Register from "./Register";
 import Dashboard from "./Dashboard";
 
-
 function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("token")
   );
 
-  const [showRegister, setShowRegister] =
-    useState(false);
-
+  const [showRegister, setShowRegister] = useState(false);
 
   // Already logged in
   if (isLoggedIn) {
-
     return (
       <Dashboard
         onLogout={() => {
@@ -26,13 +21,10 @@ function App() {
         }}
       />
     );
-
   }
-
 
   // Register page
   if (showRegister) {
-
     return (
       <Register
         onBackToLogin={() => {
@@ -40,27 +32,19 @@ function App() {
         }}
       />
     );
-
   }
-
 
   // Login page
   return (
-
     <Login
-
       onLogin={() => {
         setIsLoggedIn(true);
       }}
-
       onRegister={() => {
         setShowRegister(true);
       }}
-
     />
-
   );
 }
-
 
 export default App;
